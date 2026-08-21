@@ -31,7 +31,6 @@ const Navbar: React.FC = () => {
         { href: '/', label: 'TRANG CHỦ' },
         { href: '/format', label: 'THỂ THỨC' },
         { href: '/pool', label: 'POOL' },
-        { href: '/schedule', label: 'LỊCH TRÌNH' },
         { href: '/staff', label: 'NHÂN SỰ' },
     ];
 
@@ -69,6 +68,13 @@ const Navbar: React.FC = () => {
                                         className='relative pb-1 block hover:opacity-80 transition-opacity duration-200 whitespace-nowrap'
                                     >
                                         {link.label}
+                                        {isActive && (
+                                            <motion.span
+                                                layoutId='underline'
+                                                className='absolute left-[10%] right-[10%] bottom-0 h-0.5 bg-white rounded-full'
+                                                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                            />
+                                        )}
                                     </Link>
                                 </li>
                             );
@@ -77,12 +83,14 @@ const Navbar: React.FC = () => {
                 </div>
 
                 <div className='flex items-center pr-6'>
-                    <Link
-                        href='/register'
+                    <a
+                        href='https://google.com'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         className='hidden md:block font-bold text-sm lg:text-base xl:text-lg text-white whitespace-nowrap hover:opacity-80 transition-opacity duration-200'
                     >
                         ĐĂNG KÝ
-                    </Link>
+                    </a>
 
                     <button
                         className='md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 text-white focus:outline-none'

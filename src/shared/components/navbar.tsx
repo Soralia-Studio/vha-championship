@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,6 +9,23 @@ import { motion, AnimatePresence } from 'motion/react';
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [navVisible, setNavVisible] = useState(true);
+    const lastScrollY = useRef(0);
+    const isHomePage = pathname === '/';
+    const isFormatPage = pathname === '/format';
+
+    useEffect(() => {
+        if (!isFormatPage) return;
+
+        const handleScroll = () => {
+            const currentY = window.scrollY;
+            setNavVisible(currentY < lastScrollY.current || currentY < 50);
+            lastScrollY.current = currentY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isFormatPage]);
 
     const links = [
         { href: '/', label: 'TRANG CHỦ' },
@@ -20,7 +37,18 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            <nav className='fixed left-4 right-4 sm:left-8 sm:right-8 top-4 sm:top-6 z-50 bg-navbar rounded-xl shadow-xl flex items-center justify-between h-16 sm:h-18'>
+            <motion.nav
+                initial={isHomePage ? { opacity: 0, y: 32 } : false}
+                animate={isHomePage ? { opacity: 1, y: 0 } : undefined}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0 }}
+                className='fixed left-4 right-4 sm:left-8 sm:right-8 top-4 sm:top-6 z-50 bg-navbar rounded-xl shadow-xl flex items-center justify-between h-16 sm:h-18'
+                style={isFormatPage ? {
+                    opacity: navVisible ? 1 : 0,
+                    transform: navVisible ? 'translateY(0)' : 'translateY(20px)',
+                    pointerEvents: navVisible ? 'auto' : 'none',
+                    transition: 'opacity 0.3s ease, transform 0.3s ease',
+                } : undefined}
+            >
                 <div className='flex items-center gap-4 sm:gap-6 lg:gap-8 h-full'>
                     <div className='w-20 h-full sm:w-28 relative overflow-hidden flex-shrink-0 rounded-l-xl'>
                         <Image
@@ -41,13 +69,6 @@ const Navbar: React.FC = () => {
                                         className='relative pb-1 block hover:opacity-80 transition-opacity duration-200 whitespace-nowrap'
                                     >
                                         {link.label}
-                                        {isActive && (
-                                            <motion.span
-                                                layoutId='underline'
-                                                className='absolute left-[10%] right-[10%] bottom-0 h-0.5 bg-white'
-                                                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                                            />
-                                        )}
                                     </Link>
                                 </li>
                             );
@@ -85,7 +106,7 @@ const Navbar: React.FC = () => {
                         />
                     </button>
                 </div>
-            </nav>
+            </motion.nav>
 
             <AnimatePresence>
                 {menuOpen && (

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
         <html lang='en' className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <body className="min-h-screen overflow-hidden flex flex-col w-full text-white">
+            <body className="min-h-screen flex flex-col w-full text-white">
                 <div className="fixed inset-0 -z-20"
                     style={{
                         backgroundImage: "url('background.png')",

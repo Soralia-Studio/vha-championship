@@ -14,7 +14,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0, y: 32 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
                     >
                         <Image
                             src={'/ManCafe.png'}
@@ -29,7 +29,7 @@ export default function Home() {
                     <motion.span
                         initial={{ opacity: 0, y: 32 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.35 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
                         className='font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-widest drop-shadow-lg select-none'
                     >
                         CAFE

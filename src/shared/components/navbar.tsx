@@ -2,8 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { redirect, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { motion } from 'motion/react';
 
 const Navbar: React.FC = () => {
@@ -18,7 +17,7 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <nav className='fixed flex items-center justify-between bg-navbar rounded-xl px-3 py-6 left-12 right-12 my-8'>
+        <nav className='fixed flex items-center justify-between bg-navbar rounded-xl px-3 py-6 left-12 right-12 my-8 shadow-xl'>
             {/* Left Elements */}
             <div className='mx-6'>
                 <ul className='flex gap-9 font-bold text-xl items-center'>

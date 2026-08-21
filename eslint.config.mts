@@ -6,14 +6,8 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
-    { 
-      ignores: [
-        'dist/**',
-        'build/**',
-        'node_modules/**',
-        ".next/**",
-        "next-env.d.ts"
-      ] 
+    {
+        ignores: ['dist/**', 'build/**', 'node_modules/**', '.next/**', 'next-env.d.ts'],
     },
 
     js.configs.recommended,
@@ -30,10 +24,12 @@ export default defineConfig([
             react: { version: 'detect' },
         },
         rules: {
-            '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
             'no-console': ['warn', { allow: ['warn', 'error'] }],
             'no-var': 'error',
             'prefer-const': 'warn',
+            semi: 'off',
+            '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+            '@typescript-eslint/semi': ['error', 'always'],
         },
     },
 

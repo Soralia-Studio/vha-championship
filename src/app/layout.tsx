@@ -1,16 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import Navbar from '@/shared/components/navbar';
+import PageTransition from '@/shared/components/page-transition';
 import './globals.css';
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
+const nunito = Nunito({
+    variable: '--font-nunito',
     subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
+    weight: ['400', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
@@ -20,8 +17,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
-        <html lang='en' className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-            <body className="min-h-full flex flex-col w-full">
+        <html lang='en' className={`${nunito.variable} antialiased`}>
+            <body className="min-h-screen flex flex-col w-full text-white">
                 <div className="fixed inset-0 -z-20"
                     style={{
                         backgroundImage: "url('background.png')",
@@ -31,7 +28,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                 />
                 <div className='fixed inset-0 bg-black/50 -z-10'/>
                 <Navbar />
-                {children}
+                <PageTransition>{children}</PageTransition>
             </body>
         </html>
     );

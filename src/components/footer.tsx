@@ -1,18 +1,25 @@
-import React from 'react';
+'use client';
+
+import { motion } from 'motion/react';
 import Image from 'next/image';
 
 const Footer: React.FC = () => {
     return (
-        <footer className='fixed bottom-0 w-full flex flex-col justify-center items-center mb-9'>
-            <Image 
+        <motion.footer
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}
+            className='w-full flex justify-center items-center pb-6 sm:pb-8'
+        >
+            <Image
                 src={'/collaborator.png'}
-                alt='collaborator'
+                alt='collaborators'
                 width={610}
                 height={183}
-                className='w-full max-w-152 h-auto'
+                className='w-64 sm:w-80 md:w-96 lg:w-112 h-auto'
             />
-        </footer>
-    )
-}
+        </motion.footer>
+    );
+};
 
 export default Footer;

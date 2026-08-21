@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import { usePathname } from 'next/navigation';
 import { motion } from 'motion/react';
 
@@ -21,11 +22,14 @@ const Navbar: React.FC = () => {
             {/* Left Elements */}
             <div className='mx-6'>
                 <ul className='flex gap-9 font-bold text-xl items-center'>
-                    {/* TODO: replace with tournament logo */}
-                    <div 
-                        className='bg-gray-300 w-43 h-18 flex items-center justify-center'
-                    >
-                        PlaceHolder
+                    <div className='w-43 h-18 relative overflow-hidden'>
+                        <Image 
+                            src={'/logo_placeholder.jpg'}
+                            alt='placeholder'
+                            width={548}
+                            height={544}
+                            className='object-fill'
+                        />
                     </div>
 
                     {links.map((link) => {
